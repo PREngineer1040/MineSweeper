@@ -112,7 +112,7 @@ public class MyMouseAdapter extends MouseAdapter {
 						}
 						
 						
-						//Aqui entrar a hcer el if para warmUP3
+						//this is the code for the warmup exercise number 3
 						
 						if ((gridX == 0) && (gridY != 0) && gridY!=9)
 						{
@@ -149,6 +149,7 @@ public class MyMouseAdapter extends MouseAdapter {
 							
 						}
 						
+						//this is the code for the warm up exercise 4
 						
 						if ((gridX != 0) && (gridY == 0))
 						{
