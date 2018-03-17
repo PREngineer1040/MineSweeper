@@ -82,14 +82,14 @@ public class MyMouseAdapter extends MouseAdapter {
 							} else {
 								//On the grid other than on the left column and on the top row:
 								Color newColor = myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY];
-									while(myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] == newColor)
+									while(newColor.getRed() == myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].getRed() && newColor.getBlue() == myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].getBlue()&& newColor.getGreen() == myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].getGreen())
 									{
  								switch (generator.nextInt(5)) {
 									case 0:
 										newColor = Color.YELLOW;
 										break;
 									case 1:
-										newColor = Color.MAGENTA;
+										newColor = Color.MAGENTA; 
 										break;
 									case 2:
 										newColor = Color.BLACK;
