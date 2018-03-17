@@ -80,14 +80,14 @@ public class MyMouseAdapter extends MouseAdapter {
 						if ((gridX == 0) || (gridY == 0)) {
 							//On the left column and on the top row... do nothing
 						} 
-						
-						
+
+
 						else {
 							//On the grid other than on the left column and on the top row:
 							Color newColor = myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY];
 							while(newColor.getRed() == myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].getRed() && 
-								  newColor.getBlue() == myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].getBlue()&& 
-								  newColor.getGreen() == myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].getGreen())
+									newColor.getBlue() == myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].getBlue()&& 
+									newColor.getGreen() == myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].getGreen())
 							{
 								switch (generator.nextInt(5)) {
 								case 0:
@@ -110,19 +110,19 @@ public class MyMouseAdapter extends MouseAdapter {
 							myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = newColor;
 							myPanel.repaint();
 						}
-						
-						
+
+
 						//this is the code for the warmup exercise number 3
-						
+
 						if ((gridX == 0) && (gridY != 0) && gridY!=9)
 						{
 							for (int i=1;i<11;i++)
 							{
-								myPanel.mouseDownGridX =i;
+								myPanel.mouseDownGridX = i;
 								Color newColor = myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY];
 								while(newColor.getRed() == myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].getRed() && 
-									  newColor.getBlue() == myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].getBlue()&& 
-									  newColor.getGreen() == myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].getGreen())
+										newColor.getBlue() == myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].getBlue()&& 
+										newColor.getGreen() == myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].getGreen())
 								{
 									switch (generator.nextInt(5)) {
 									case 0:
@@ -146,20 +146,20 @@ public class MyMouseAdapter extends MouseAdapter {
 								myPanel.repaint();
 
 							}
-							
+
 						}
-						
+
 						//this is the code for the warm up exercise 4
-						
+
 						if ((gridX != 0) && (gridY == 0))
 						{
 							for (int i=1;i<9;i++)
 							{
-								myPanel.mouseDownGridY =i;
+								myPanel.mouseDownGridY = i;
 								Color newColor = myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY];
 								while(newColor.getRed() == myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].getRed() && 
-									  newColor.getBlue() == myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].getBlue()&& 
-									  newColor.getGreen() == myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].getGreen())
+										newColor.getBlue() == myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].getBlue()&& 
+										newColor.getGreen() == myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].getGreen())
 								{
 									switch (generator.nextInt(5)) {
 									case 0:
@@ -183,7 +183,41 @@ public class MyMouseAdapter extends MouseAdapter {
 								myPanel.repaint();
 
 							}
-							
+
+						}
+
+						if ((gridX == 0) && (gridY == 0) && (gridY != 9))
+						{
+							for (int i = 1; i < 9; i++)
+							{
+								myPanel.mouseDownGridX = i;
+								myPanel.mouseDownGridY = i;
+								Color newColor = myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY];
+								while(newColor.getRed() == myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].getRed() && 
+										newColor.getBlue() == myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].getBlue()&& 
+										newColor.getGreen() == myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].getGreen())
+								{
+									switch (generator.nextInt(5)) {
+									case 0:
+										newColor = Color.YELLOW;
+										break;
+									case 1:
+										newColor = Color.MAGENTA; 
+										break;
+									case 2:
+										newColor = Color.BLACK;
+										break;
+									case 3:
+										newColor = new Color(0x964B00);   //Brown (from http://simple.wikipedia.org/wiki/List_of_colors)
+										break;
+									case 4:
+										newColor = new Color(0xB57EDC);   //Lavender (from http://simple.wikipedia.org/wiki/List_of_colors)
+										break;
+									}
+								}
+								myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = newColor;
+								myPanel.repaint();
+							}
 						}
 					}
 				}
