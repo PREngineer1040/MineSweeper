@@ -258,7 +258,7 @@ public class MyMouseAdapter extends MouseAdapter {
 							}
 						}
 					}
-				}
+				} 
 			}
 			myPanel.repaint();
 			break;
