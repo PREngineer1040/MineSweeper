@@ -114,7 +114,7 @@ public class MyMouseAdapter extends MouseAdapter {
 
 						//this is the code for the warmup exercise number 3
 
-						if ((gridX == 0) && (gridY != 0) && gridY!=9)
+						if ((gridX == 0) && (gridY != 0) && (gridY!=9))
 						{
 							for (int i=1;i<11;i++)
 							{
@@ -185,8 +185,8 @@ public class MyMouseAdapter extends MouseAdapter {
 							}
 
 						}
-
-						if ((gridX == 0) && (gridY == 0) && (gridY != 9))
+						// Warmup Exercise 5
+						if ((gridX == 0) && (gridY == 0))
 						{
 							for (int i = 1; i < 9; i++)
 							{
@@ -217,6 +217,44 @@ public class MyMouseAdapter extends MouseAdapter {
 								}
 								myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = newColor;
 								myPanel.repaint();
+							}
+						}
+
+						// Warmup Exercise 6
+						if ((gridX == 0) && (gridY == 9))
+						{
+							for (int i = 8; i > 0; i--)
+							{
+								for (int j = 1; j < 9; j++)
+								{		
+									myPanel.mouseDownGridX = i;
+									myPanel.mouseDownGridY = j;
+									Color newColor = myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY];
+									while(newColor.getRed() == myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].getRed() && 
+											newColor.getBlue() == myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].getBlue()&& 
+											newColor.getGreen() == myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].getGreen())
+									{
+										switch (generator.nextInt(5)) {
+										case 0:
+											newColor = Color.YELLOW;
+											break;
+										case 1:
+											newColor = Color.MAGENTA; 
+											break;
+										case 2:
+											newColor = Color.BLACK;
+											break;
+										case 3:
+											newColor = new Color(0x964B00);   //Brown (from http://simple.wikipedia.org/wiki/List_of_colors)
+											break;
+										case 4:
+											newColor = new Color(0xB57EDC);   //Lavender (from http://simple.wikipedia.org/wiki/List_of_colors)
+											break;
+										}
+									}
+									myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = newColor;
+									myPanel.repaint();
+								}
 							}
 						}
 					}
