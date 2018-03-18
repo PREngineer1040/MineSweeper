@@ -76,13 +76,15 @@ public class MyMouseAdapter extends MouseAdapter {
 						//Released the mouse button on a different cell where it was pressed
 						//Do nothing
 					} else {
+						
+						/*
 						//Released the mouse button on the same cell where it was pressed
 						if ((gridX == 0) || (gridY == 0)) {
 							//On the left column and on the top row... do nothing
 						} 
-
-
 						else {
+						
+							
 							//On the grid other than on the left column and on the top row:
 							Color newColor = myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY];
 							while(newColor.getRed() == myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].getRed() && 
@@ -106,17 +108,19 @@ public class MyMouseAdapter extends MouseAdapter {
 									newColor = new Color(0xB57EDC);   //Lavender (from http://simple.wikipedia.org/wiki/List_of_colors)
 									break;
 								}
-							}
+							}*/
+						System.out.println(gridX);
+							Color newColor = Color.WHITE;
 							myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = newColor;
 							myPanel.repaint();
 						}
 
 
 						//this is the code for the warmup exercise number 3
-
-						if ((gridX == 0) && (gridY != 0) && (gridY!=9))
+						/*
+						if ((gridX == 0) && (gridY != 0) && (gridY!=MyPanel.extractRows()))
 						{
-							for (int i=1;i<11;i++)
+							for (int i=1;i<MyPanel.extractRows();i++)
 							{
 								myPanel.mouseDownGridX = i;
 								Color newColor = myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY];
@@ -153,7 +157,7 @@ public class MyMouseAdapter extends MouseAdapter {
 
 						if ((gridX != 0) && (gridY == 0))
 						{
-							for (int i=1;i<9;i++)
+							for (int i=1;i<MyPanel.extractColumns();i++)
 							{
 								myPanel.mouseDownGridY = i;
 								Color newColor = myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY];
@@ -186,6 +190,7 @@ public class MyMouseAdapter extends MouseAdapter {
 
 						}
 						// Warmup Exercise 5
+						/*
 						if ((gridX == 0) && (gridY == 0))
 						{
 							for (int i = 1; i < 9; i++)
@@ -221,12 +226,14 @@ public class MyMouseAdapter extends MouseAdapter {
 						}
 
 						// Warmup Exercise 6
+						
 						if ((gridX == 0) && (gridY == 9))
 						{
-							for (int i = 8; i > 0; i--)
+							int j=0;
+							for (int i = 10; i > 0; i--)
 							{
-								for (int j = 1; j < 9; j++)
-								{		
+								j+=1; 
+										
 									myPanel.mouseDownGridX = i;
 									myPanel.mouseDownGridY = j;
 									Color newColor = myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY];
@@ -254,12 +261,14 @@ public class MyMouseAdapter extends MouseAdapter {
 									}
 									myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = newColor;
 									myPanel.repaint();
-								}
+								
 							}
 						}
+						
+						*/
 					}
 				} 
-			}
+			
 			myPanel.repaint();
 			break;
 		case 3:		//Right mouse button
