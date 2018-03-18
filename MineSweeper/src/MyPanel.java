@@ -17,6 +17,7 @@ public class MyPanel extends JPanel {
 	public int mouseDownGridX = 0;
 	public int mouseDownGridY = 0;
 	public Color[][] colorArray = new Color[TOTAL_COLUMNS][TOTAL_ROWS];
+	public static final int mines= 15; //Cantidad de minas que apareceran en el juego
 	// methods to extract TOTAL_COLUMNS and TOTAL_ROWS for use in other classes 
 	public static int extractRows()
 	{
@@ -95,7 +96,7 @@ public class MyPanel extends JPanel {
 	// Verify that the coordinates in the parameters are valid.
 	// Also verifies if there are any mines around the x,y coordinate
 	public void revealAdjacent(int x, int y){
-		if((x<0) || (y<0) || (x>=9) || (y>=9)){return;}
+		if((x<0) || (y<0) || (x>=TOTAL_ROWS) || (y>=TOTAL_COLUMNS )){return;}
 
 		else {
 			colorArray[x][y] = Color.GRAY;
