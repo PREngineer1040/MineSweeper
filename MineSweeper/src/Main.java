@@ -16,6 +16,5 @@ public class Main {
 		myFrame.setVisible(true);
 		Bombs bomb = new Bombs(15,9,9);
 		bomb.bombLocator();
-		bomb.arrayDataPrinter();
 	}
 }

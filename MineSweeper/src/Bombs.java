@@ -15,15 +15,15 @@ public class Bombs
 		this.rows=rows; 
 		}
 	
-	//This creates an array that will contain the location of the bombs, initially no space contains any bomb (all fields are false). 
+	//This creates an array that will contain the location of the bombs, initially no space contains any bomb (all fields are false).
+	//This method also uses the random class to create the mine field. 
 
 	public void bombLocator()
 		{ 
 		this.mineArray = new boolean [rows][columns];
 			int currentMines = 0; 
 			Random randomGenerator = new Random(); 
-			//Random newI = new Random();
-			//Random newJ = new Random(); 
+
 			while (currentMines<15 )
 			{
 				int i = randomGenerator.nextInt(rows);
@@ -31,25 +31,11 @@ public class Bombs
 					if (currentMines<15)
 					{
 						mineArray[i][j]= randomGenerator.nextBoolean(); 
-							if (mineArray[i][j]==true)
-								{
-									currentMines+=1; 
-									}
+						if (mineArray[i][j]==true)
+							{
+								currentMines+=1; 
+							}
 					}
 			}
-			System.out.println(currentMines);
 		}
-	
-	public void arrayDataPrinter()
-	{
-		{
-			for (int i=0;i<rows;i++)
-			{
-				for (int j=0;j<this.columns;j++)
-				{
-				System.out.println(this.mineArray[i][j]);
-				}
-			}
-		}
-	}
 }
