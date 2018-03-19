@@ -8,7 +8,21 @@ import java.util.Random;
 import javax.swing.JFrame;
 
 public class MyMouseAdapter extends MouseAdapter {
+ 
+	
+	private static int mines=15; 
 	private Random generator = new Random();
+	Bombs bomb=new Bombs(mines,MyPanel.extractRows(),MyPanel.extractColumns());
+	
+	//This method uses the Bombs class to create the generate the bomb object and create the mine Field. The mine field is then stored as an instance of this class. 
+	public void mines()
+	{
+		Bombs bomb = new Bombs(mines,MyPanel.extractRows(),MyPanel.extractColumns());
+		bomb.mineField();  
+		this.bomb=bomb;
+	}
+	
+	
 	public void mousePressed(MouseEvent e)
 	{
 		switch (e.getButton()) {
@@ -63,7 +77,7 @@ public class MyMouseAdapter extends MouseAdapter {
 			myPanel.x = x;
 			myPanel.y = y;
 			int gridX = myPanel.getGridX(x, y);
-			int gridY = myPanel.getGridY(x, y);
+			int gridY = myPanel.getGridY(x, y);			
 			if ((myPanel.mouseDownGridX == -1) || (myPanel.mouseDownGridY == -1)) {
 				//Had pressed outside
 				//Do nothing
@@ -109,9 +123,18 @@ public class MyMouseAdapter extends MouseAdapter {
 									break;
 								}
 							}*/
-							Color newColor = Color.WHITE;
-							myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = newColor;
-							myPanel.repaint();
+						//	Color newColor = Color.WHITE;
+						
+							if (bomb.bombLocator(myPanel.mouseDownGridX,myPanel.mouseDownGridY)==true)
+							{
+								myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.BLACK;
+								myPanel.repaint();
+							}
+							else 
+							{
+								myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.WHITE;
+								myPanel.repaint();
+							}
 						}
 
 

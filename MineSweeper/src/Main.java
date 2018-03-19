@@ -11,10 +11,10 @@ public class Main {
 		myFrame.add(myPanel);
 
 		MyMouseAdapter myMouseAdapter = new MyMouseAdapter();
+		myMouseAdapter.mines();
 		myFrame.addMouseListener(myMouseAdapter);
-
 		myFrame.setVisible(true);
-		Bombs bomb = new Bombs(15,9,9);
-		bomb.bombLocator();
+
+		
 	}
 }

@@ -17,7 +17,6 @@ public class MyPanel extends JPanel {
 	public int mouseDownGridX = 0;
 	public int mouseDownGridY = 0;
 	public Color[][] colorArray = new Color[TOTAL_COLUMNS][TOTAL_ROWS];
-	public static final int mines= 15; //Cantidad de minas que apareceran en el juego
 	// methods to extract TOTAL_COLUMNS and TOTAL_ROWS for use in other classes 
 	public static int extractRows()
 	{
@@ -25,7 +24,7 @@ public class MyPanel extends JPanel {
 	}
 	public static int extractColumns()
 	{
-		return TOTAL_COLUMNS; 
+		return TOTAL_COLUMNS;  
 	}
 	public MyPanel() {   //This is the constructor... this code runs first to initialize
 		if (INNER_CELL_SIZE + (new Random()).nextInt(1) < 1) {	//Use of "random" to prevent unwanted Eclipse warning

@@ -13,29 +13,42 @@ public class Bombs
 		this.mines=mines; 
 		this.columns=columns;
 		this.rows=rows; 
+		boolean [][] mineArray;
+		mineArray= new boolean[rows][columns]; 
+		this.mineArray= mineArray; 
 		}
 	
 	//This creates an array that will contain the location of the bombs, initially no space contains any bomb (all fields are false).
 	//This method also uses the random class to create the mine field. 
 
-	public void bombLocator()
+	public void mineField()
 		{ 
-		this.mineArray = new boolean [rows][columns];
 			int currentMines = 0; 
 			Random randomGenerator = new Random(); 
-
-			while (currentMines<15 )
+			boolean[][] mineArray; 
+			mineArray = new boolean[rows][columns];
+			
+			while (currentMines<mines )
 			{
 				int i = randomGenerator.nextInt(rows);
 				int j = randomGenerator.nextInt(columns);
-					if (currentMines<15)
-					{
-						mineArray[i][j]= randomGenerator.nextBoolean(); 
-						if (mineArray[i][j]==true)
-							{
-								currentMines+=1; 
-							}
-					}
+				if(mineArray[i][j]==false)
+				{
+					mineArray[i][j]= randomGenerator.nextBoolean(); 
+					if (mineArray[i][j]==true)
+						{
+							currentMines+=1; 
+						}
+				}
 			}
+			this.mineArray=mineArray;
 		}
+	
+	//This method returns the value of the mineArray. It can be either true or false. 
+	public boolean bombLocator(int i, int j)
+	{
+		return mineArray[i][j]; 
+	}
 }
+
+
