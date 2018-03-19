@@ -12,6 +12,7 @@ public class MyPanel extends JPanel {
 	private static final int INNER_CELL_SIZE = 70;
 	private static final int TOTAL_COLUMNS =9;
 	private static final int TOTAL_ROWS = 9;   //Last row has only one cell
+	public static final int mines=15; 
 	public int x = -1;
 	public int y = -1;
 	public int mouseDownGridX = 0;
@@ -26,6 +27,12 @@ public class MyPanel extends JPanel {
 	{
 		return TOTAL_COLUMNS;  
 	}
+	
+	//Here we create an object of the Bombs class and create the mine Field. 
+	//The mine field is then stored as an instance of the Bombs class. 
+	//private Random generator = new Random();
+	Bombs bomb=new Bombs(mines,TOTAL_ROWS,TOTAL_COLUMNS);
+	
 	public MyPanel() {   //This is the constructor... this code runs first to initialize
 		if (INNER_CELL_SIZE + (new Random()).nextInt(1) < 1) {	//Use of "random" to prevent unwanted Eclipse warning
 			throw new RuntimeException("INNER_CELL_SIZE must be positive!");

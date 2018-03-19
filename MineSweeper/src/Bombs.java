@@ -15,7 +15,8 @@ public class Bombs
 		this.rows=rows; 
 		boolean [][] mineArray;
 		mineArray= new boolean[rows][columns]; 
-		this.mineArray= mineArray; 
+		this.mineArray= mineArray;
+		mineField(); 
 		}
 	
 	//This creates an array that will contain the location of the bombs, initially no space contains any bomb (all fields are false).
@@ -34,11 +35,8 @@ public class Bombs
 				int j = randomGenerator.nextInt(columns);
 				if(mineArray[i][j]==false)
 				{
-					mineArray[i][j]= randomGenerator.nextBoolean(); 
-					if (mineArray[i][j]==true)
-						{
-							currentMines+=1; 
-						}
+					mineArray[i][j]=true; 
+					currentMines+=1; 
 				}
 			}
 			this.mineArray=mineArray;

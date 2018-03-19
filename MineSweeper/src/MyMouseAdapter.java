@@ -8,20 +8,6 @@ import java.util.Random;
 import javax.swing.JFrame;
 
 public class MyMouseAdapter extends MouseAdapter {
- 
-	
-	private static int mines=15; 
-	private Random generator = new Random();
-	Bombs bomb=new Bombs(mines,MyPanel.extractRows(),MyPanel.extractColumns());
-	
-	//This method uses the Bombs class to create the generate the bomb object and create the mine Field. The mine field is then stored as an instance of this class. 
-	public void mines()
-	{
-		Bombs bomb = new Bombs(mines,MyPanel.extractRows(),MyPanel.extractColumns());
-		bomb.mineField();  
-		this.bomb=bomb;
-	}
-	
 	
 	public void mousePressed(MouseEvent e)
 	{
@@ -125,7 +111,7 @@ public class MyMouseAdapter extends MouseAdapter {
 							}*/
 						//	Color newColor = Color.WHITE;
 						
-							if (bomb.bombLocator(myPanel.mouseDownGridX,myPanel.mouseDownGridY)==true)
+							if (myPanel.bomb.bombLocator(myPanel.mouseDownGridX,myPanel.mouseDownGridY)==true)
 							{
 								myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.BLACK;
 								myPanel.repaint();
