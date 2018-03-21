@@ -6,7 +6,9 @@ public class Bombs
 	private static int rows;
 	private static int columns;
 	boolean[][] mineArray;
-	
+	int[][] mineCount; 
+
+
 	//This is the constructor for the Bombs object
 	public Bombs(int mines, int columns, int rows)
 		{
@@ -16,7 +18,8 @@ public class Bombs
 		boolean [][] mineArray;
 		mineArray= new boolean[rows][columns]; 
 		this.mineArray= mineArray;
-		mineField(); 
+		mineField();
+		revealAdjacent(); 
 		}
 	
 	//This creates an array that will contain the location of the bombs, initially no space contains any bomb (all fields are false).
@@ -47,6 +50,38 @@ public class Bombs
 	{
 		return mineArray[i][j]; 
 	}
+	public void revealAdjacent()
+	{
+		int[][] mineCount; 
+		mineCount=new int[columns][rows];
+		int counter=0;
+		for (int i=0;i<columns;i++)
+		{
+			for (int j=0;j<rows;j++)
+			{				
+				for (int m=-1;m<=1;m++)
+				{
+					for (int n=-1;n<=1;n++)
+					{
+						if ((m+i)>=0 && (n+j)>=0 && (m+i)<columns && (n+j)<rows)
+						{
+							if (n!=0 || m!=0)
+							{
+								if (mineArray[(i+m)][(j+n)]==true)
+								{
+									counter+=1; 
+								}
+							}
+						}
+					}
+				}
+				mineCount[i][j]=counter;
+				counter=0;
+			}
+		}
+		this.mineCount=mineCount; 
+	}
+
 }
 
 
