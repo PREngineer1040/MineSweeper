@@ -1,8 +1,11 @@
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Insets;
+import java.awt.event.MouseEvent;
 import java.util.Random;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class MyPanel extends JPanel {
@@ -18,16 +21,7 @@ public class MyPanel extends JPanel {
 	public int mouseDownGridX = 0;
 	public int mouseDownGridY = 0;
 	public Color[][] colorArray = new Color[TOTAL_COLUMNS][TOTAL_ROWS];
-	// methods to extract TOTAL_COLUMNS and TOTAL_ROWS for use in other classes 
-	public static int extractRows()
-	{
-		return TOTAL_ROWS; 
-	}
-	public static int extractColumns()
-	{
-		return TOTAL_COLUMNS;  
-	}
-	
+
 	//Here we create an object of the Bombs class and create the mine Field. 
 	//The mine field is then stored as an instance of the Bombs class. 
 	//private Random generator = new Random();
@@ -171,4 +165,6 @@ public class MyPanel extends JPanel {
 		}
 		return y;
 	}
+	
+
 }
