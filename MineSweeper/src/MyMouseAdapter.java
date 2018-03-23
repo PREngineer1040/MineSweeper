@@ -12,7 +12,7 @@ public class MyMouseAdapter extends MouseAdapter {
 	private boolean isGameOver = false;
 	private boolean shouldWeEnd = false;
 	private int clickCounter = 0;
-
+	
 	public void mousePressed(MouseEvent e)
 	{
 		//	switch (e.getButton()) {
@@ -105,6 +105,7 @@ public class MyMouseAdapter extends MouseAdapter {
 						{
 							myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.BLACK;
 							myPanel.repaint();
+							Main.audioClip.stop();
 							this.shouldWeEnd = true;
 						}
 						else if (!myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].equals(Color.RED))
@@ -113,7 +114,6 @@ public class MyMouseAdapter extends MouseAdapter {
 								myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.WHITE; 
 								myPanel.bomb.adjacentDisplay[myPanel.mouseDownGridX][myPanel.mouseDownGridY]=true;
 								this.clickCounter++;
-								System.out.println(this.clickCounter);
 								//myPanel.repaint(); 
 							}
 						}	
@@ -170,11 +170,7 @@ public class MyMouseAdapter extends MouseAdapter {
 						}
 					}
 				} 
-
-
-
 				myPanel.repaint();
-
 			}
 		}
 	}
