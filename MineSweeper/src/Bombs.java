@@ -6,7 +6,7 @@ public class Bombs
 	private static int rows;
 	private static int columns;
 	boolean[][] mineArray;
-	int[][] mineCount; 
+	String[][] adjacentMineString; 
 
 
 	//This is the constructor for the Bombs object
@@ -19,7 +19,7 @@ public class Bombs
 		mineArray= new boolean[rows][columns]; 
 		this.mineArray= mineArray;
 		mineField();
-		revealAdjacent(); 
+		revealAdjacent();
 		}
 	
 	//This creates an array that will contain the location of the bombs, initially no space contains any bomb (all fields are false).
@@ -50,10 +50,11 @@ public class Bombs
 	{
 		return mineArray[i][j]; 
 	}
+	
+	//This method finds the adjacent mines for every tile. It stores the adjacent mines location as a string Array. 
 	public void revealAdjacent()
 	{
-		int[][] mineCount; 
-		mineCount=new int[columns][rows];
+		String [][] adjacent = new String[this.columns][this.rows]; 
 		int counter=0;
 		for (int i=0;i<columns;i++)
 		{
@@ -75,11 +76,11 @@ public class Bombs
 						}
 					}
 				}
-				mineCount[i][j]=counter;
+				adjacent[i][j]=Integer.toString(counter);
 				counter=0;
 			}
 		}
-		this.mineCount=mineCount; 
+		this.adjacentMineString = adjacent; 
 	}
 
 }
