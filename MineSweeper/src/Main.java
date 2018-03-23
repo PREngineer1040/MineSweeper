@@ -1,11 +1,35 @@
 import java.awt.TrayIcon.MessageType;
+import java.io.File;
+import java.io.IOException;
 
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.DataLine;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class Main {
-	public static void main(String[] args) throws InterruptedException {
 
+	public static AudioInputStream audioStream;
+	public static Clip audioClip;
+	public static File audioFile;	
+
+
+	public static void main(String[] args) throws InterruptedException, IOException {
+
+		audioFile = new File("music/GameSong.wav");
+		try {
+			audioStream = AudioSystem.getAudioInputStream(audioFile);
+		} catch (UnsupportedAudioFileException e) {
+			e.printStackTrace();
+		}
+
+		
+		startMusic();
 		
 		int tryAgain = 2;
 		while (tryAgain != 1) {
@@ -13,7 +37,7 @@ public class Main {
 			myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //This had to be changed, because otherwise the program would keep running after exiting the window. 
 			myFrame.setLocation(400, 150);
 			myFrame.setSize(700,730);
-			
+
 			MyPanel myPanel = new MyPanel();
 			myFrame.add(myPanel);
 
@@ -31,5 +55,21 @@ public class Main {
 
 		}
 		System.exit(0);
+	}
+
+
+	public static void startMusic() throws InterruptedException, IOException {
+		AudioFormat format = audioStream.getFormat();
+		DataLine.Info info = new DataLine.Info(Clip.class, format);
+		try {
+			Clip audioClip = (Clip) AudioSystem.getLine(info);
+			audioClip.open(audioStream);
+			audioClip.start();
+			audioClip.loop(Clip.LOOP_CONTINUOUSLY);
+		} catch (LineUnavailableException e) {
+
+			e.printStackTrace();
+		}
+
 	}
 }
