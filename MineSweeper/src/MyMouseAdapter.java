@@ -134,14 +134,14 @@ public class MyMouseAdapter extends MouseAdapter {
 							}*/
 						//	Color newColor = Color.WHITE;
 
-						if (myPanel.bomb.bombLocator(myPanel.mouseDownGridX,myPanel.mouseDownGridY)==true)
+						if (myPanel.bomb.bombLocator(myPanel.mouseDownGridX,myPanel.mouseDownGridY)==true && !myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].equals(Color.RED))
 						{
 							myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.BLACK;
 							myPanel.repaint();
 //							this.setGameOver(true);
 							this.shouldWeEnd = true;
 						}
-						else 
+						else if (!myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].equals(Color.RED))
 						{
 							myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.WHITE;
 							myPanel.repaint();
