@@ -15,7 +15,7 @@ public class MyPanel extends JPanel {
 	private static final int INNER_CELL_SIZE = 70;
 	private static final int TOTAL_COLUMNS =9;
 	private static final int TOTAL_ROWS = 9;   //Last row has only one cell
-	public static final int mines=15; 
+	public static final int mines=10; 
 	public int x = -1;
 	public int y = -1;
 	public int mouseDownGridX = 0;
@@ -86,32 +86,23 @@ public class MyPanel extends JPanel {
 					Color c = colorArray[x][y];
 					g.setColor(c);
 					g.fillRect(x1 + GRID_X + (x * (INNER_CELL_SIZE + 1)) + 1, y1 + GRID_Y + (y * (INNER_CELL_SIZE + 1)) + 1, INNER_CELL_SIZE, INNER_CELL_SIZE);
-				}	}
+				}	
+			}
+			for (int i=0;i<TOTAL_COLUMNS; i++)
+				{
+				for (int j=0;j<TOTAL_ROWS;j++)
+				{
+					if (bomb.adjacentDisplay[i][j]==true)
+					{
+					g.setColor(Color.BLUE);
+					g.drawString(bomb.adjacentMineString[i][j], INNER_CELL_SIZE*(i+1)-15, (j+1)*INNER_CELL_SIZE);
+					}
+				}
+				}
+				
+				
 		
 	}
-
-
-	// This method helps to find the adjacent boxes that don't have a mine.
-	// It is partially implemented since the verify hasn't been discussed in class
-	// Verify that the coordinates in the parameters are valid.
-	// Also verifies if there are any mines around the x,y coordinate
-	public void revealAdjacent(int x, int y){
-		if((x<0) || (y<0) || (x>=TOTAL_ROWS) || (y>=TOTAL_COLUMNS )){return;}
-
-		else {
-			colorArray[x][y] = Color.GRAY;
-			revealAdjacent(x-1, y);
-			revealAdjacent(x+1, y);
-			revealAdjacent(x, y-1);
-			revealAdjacent(x, y+1);
-		}
-		
-		System.out.println("Test");
-
-	}
-	
-
-
 
 	public int getGridX(int x, int y) {
 		Insets myInsets = getInsets();
@@ -165,6 +156,7 @@ public class MyPanel extends JPanel {
 		}
 		return y;
 	}
+
 	
 
 }

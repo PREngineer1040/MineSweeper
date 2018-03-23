@@ -11,6 +11,7 @@ public class MyMouseAdapter extends MouseAdapter {
 
 	private boolean isGameOver = false;
 	private boolean shouldWeEnd = false;
+	
 
 	public void mousePressed(MouseEvent e)
 	{
@@ -99,53 +100,19 @@ public class MyMouseAdapter extends MouseAdapter {
 						//Released the mouse button on a different cell where it was pressed
 						//Do nothing
 					} else {
-
-						/*
-						//Released the mouse button on the same cell where it was pressed
-						if ((gridX == 0) || (gridY == 0)) {
-							//On the left column and on the top row... do nothing
-						} 
-						else {
-
-
-							//On the grid other than on the left column and on the top row:
-							Color newColor = myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY];
-							while(newColor.getRed() == myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].getRed() && 
-									newColor.getBlue() == myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].getBlue()&& 
-									newColor.getGreen() == myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].getGreen())
-							{
-								switch (generator.nextInt(5)) {
-								case 0:
-									newColor = Color.YELLOW;
-									break;
-								case 1:
-									newColor = Color.MAGENTA; 
-									break;
-								case 2:
-									newColor = Color.BLACK;
-									break;
-								case 3:
-									newColor = new Color(0x964B00);   //Brown (from http://simple.wikipedia.org/wiki/List_of_colors)
-									break;
-								case 4:
-									newColor = new Color(0xB57EDC);   //Lavender (from http://simple.wikipedia.org/wiki/List_of_colors)
-									break;
-								}
-							}*/
-						//	Color newColor = Color.WHITE;
-
+							
 						if (myPanel.bomb.bombLocator(myPanel.mouseDownGridX,myPanel.mouseDownGridY)==true && !myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].equals(Color.RED))
 						{
 							myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.BLACK;
 							myPanel.repaint();
-//							this.setGameOver(true);
 							this.shouldWeEnd = true;
 						}
 						else if (!myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].equals(Color.RED))
 						{
-							myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.WHITE;
-							myPanel.repaint();
-						}
+							myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.WHITE; 
+							myPanel.bomb.adjacentDisplay[myPanel.mouseDownGridX][myPanel.mouseDownGridY]=true;
+							//myPanel.repaint(); 
+						}	
 					}
 				}
 			} 
@@ -199,6 +166,8 @@ public class MyMouseAdapter extends MouseAdapter {
 						}
 					}
 				} 
+			
+		
 
 				myPanel.repaint();
 
@@ -213,9 +182,5 @@ public class MyMouseAdapter extends MouseAdapter {
 		}
 		return isGameOver;
 	}
+	}
 
-//	public void setGameOver(boolean isGameOver) {
-//		this.isGameOver = isGameOver;
-//		System.out.println("Test");
-//	}
-}

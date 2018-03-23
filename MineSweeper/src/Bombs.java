@@ -7,6 +7,7 @@ public class Bombs
 	private static int columns;
 	boolean[][] mineArray;
 	String[][] adjacentMineString; 
+	boolean[][]adjacentDisplay; 
 
 
 	//This is the constructor for the Bombs object
@@ -20,6 +21,7 @@ public class Bombs
 		this.mineArray= mineArray;
 		mineField();
 		revealAdjacent();
+		adjacentDisplayer();
 		}
 	
 	//This creates an array that will contain the location of the bombs, initially no space contains any bomb (all fields are false).
@@ -82,7 +84,19 @@ public class Bombs
 		}
 		this.adjacentMineString = adjacent; 
 	}
-
+public void adjacentDisplayer()
+{
+	boolean[][] adjacentDisplay; 
+	adjacentDisplay = new boolean[columns][rows]; 
+	for (int i=0;i<columns;i++)
+	{
+		for (int j=0;j<rows;rows++)
+		{
+			adjacentDisplay[i][j]=false; 
+		}
+	}
+	this.adjacentDisplay=adjacentDisplay; 
+}
 }
 
 
