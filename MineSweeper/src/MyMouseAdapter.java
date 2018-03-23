@@ -100,7 +100,7 @@ public class MyMouseAdapter extends MouseAdapter {
 						//Released the mouse button on a different cell where it was pressed
 						//Do nothing
 					} else {
-							
+
 						if (myPanel.bomb.bombLocator(myPanel.mouseDownGridX,myPanel.mouseDownGridY)==true && !myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].equals(Color.RED))
 						{
 							myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.BLACK;
@@ -109,10 +109,13 @@ public class MyMouseAdapter extends MouseAdapter {
 						}
 						else if (!myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].equals(Color.RED))
 						{
-							myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.WHITE; 
-							myPanel.bomb.adjacentDisplay[myPanel.mouseDownGridX][myPanel.mouseDownGridY]=true;
-							this.clickCounter++;
-							//myPanel.repaint(); 
+							if (!myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].equals(Color.WHITE)) {
+								myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.WHITE; 
+								myPanel.bomb.adjacentDisplay[myPanel.mouseDownGridX][myPanel.mouseDownGridY]=true;
+								this.clickCounter++;
+								System.out.println(this.clickCounter);
+								//myPanel.repaint(); 
+							}
 						}	
 					}
 				}
@@ -167,8 +170,8 @@ public class MyMouseAdapter extends MouseAdapter {
 						}
 					}
 				} 
-			
-		
+
+
 
 				myPanel.repaint();
 
@@ -183,5 +186,5 @@ public class MyMouseAdapter extends MouseAdapter {
 		}
 		return isGameOver;
 	}
-	}
+}
 
