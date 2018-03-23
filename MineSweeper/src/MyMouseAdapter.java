@@ -11,7 +11,7 @@ public class MyMouseAdapter extends MouseAdapter {
 
 	private boolean isGameOver = false;
 	private boolean shouldWeEnd = false;
-	
+	private int clickCounter = 0;
 
 	public void mousePressed(MouseEvent e)
 	{
@@ -111,6 +111,7 @@ public class MyMouseAdapter extends MouseAdapter {
 						{
 							myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.WHITE; 
 							myPanel.bomb.adjacentDisplay[myPanel.mouseDownGridX][myPanel.mouseDownGridY]=true;
+							this.clickCounter++;
 							//myPanel.repaint(); 
 						}	
 					}
@@ -176,7 +177,7 @@ public class MyMouseAdapter extends MouseAdapter {
 	}
 
 	public boolean istheGameOver() {
-		if (this.shouldWeEnd == true)
+		if (this.shouldWeEnd == true || this.clickCounter == 68)
 		{
 			this.isGameOver = true;
 		}
