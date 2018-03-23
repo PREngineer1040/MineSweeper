@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Insets;
 import java.awt.event.MouseEvent;
@@ -15,7 +16,7 @@ public class MyPanel extends JPanel {
 	private static final int INNER_CELL_SIZE = 70;
 	private static final int TOTAL_COLUMNS =9;
 	private static final int TOTAL_ROWS = 9;   //Last row has only one cell
-	public static final int mines=10; 
+	public static final int mines=13; 
 	public int x = -1;
 	public int y = -1;
 	public int mouseDownGridX = 0;
@@ -53,7 +54,7 @@ public class MyPanel extends JPanel {
 	}
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-
+		Font newFont = new Font("Comic Sans MS", Font.BOLD, 28);
 		//Compute interior coordinates
 		Insets myInsets = getInsets();
 		int x1 = myInsets.left;
@@ -95,6 +96,7 @@ public class MyPanel extends JPanel {
 					if (bomb.adjacentDisplay[i][j]==true)
 					{
 					g.setColor(Color.BLUE);
+					g.setFont(newFont);
 					g.drawString(bomb.adjacentMineString[i][j], INNER_CELL_SIZE*(i+1)-15, (j+1)*INNER_CELL_SIZE);
 					}
 				}
