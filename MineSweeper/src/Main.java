@@ -94,7 +94,6 @@ public class Main {
 			}
 		}
 
-		System.out.println(choose + "");
 		startMusic();
 	}
 }
