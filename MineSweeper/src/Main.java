@@ -1,4 +1,3 @@
-import java.awt.TrayIcon.MessageType;
 import java.io.File;
 import java.io.IOException;
 
@@ -21,18 +20,13 @@ public class Main {
 
 	public static void main(String[] args) throws InterruptedException, IOException {
 
-		audioFile = new File("music/GameSong.wav");
-		try {
-			audioStream = AudioSystem.getAudioInputStream(audioFile);
-		} catch (UnsupportedAudioFileException e) {
-			e.printStackTrace();
-		}
-
 		
-		startMusic();
+		chooseMusic();
+		
 		
 		int tryAgain = 2;
 		while (tryAgain != 1) {
+			
 			JFrame myFrame = new JFrame("Bienve's Grid");
 			myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //This had to be changed, because otherwise the program would keep running after exiting the window. 
 			myFrame.setLocation(400, 150);
@@ -49,7 +43,6 @@ public class Main {
 				Thread.sleep(500);
 			}
 			tryAgain = JOptionPane.showConfirmDialog(null, "Would you like to play again?", "Game Over", JOptionPane.YES_NO_OPTION);
-			System.out.println(tryAgain + "");
 			myPanel.repaint();
 			myFrame.dispose();
 
@@ -71,5 +64,32 @@ public class Main {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public static void chooseMusic() throws InterruptedException, IOException {
+		int choose = 0;
+		choose = JOptionPane.showConfirmDialog(null, "Would you like to experience hell?", "Choose your music", JOptionPane.YES_NO_OPTION);
+		
+		if (choose == 0) {
+			audioFile = new File("music/HellishSong.wav");
+			try {
+				audioStream = AudioSystem.getAudioInputStream(audioFile);
+			} catch (UnsupportedAudioFileException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+		else if (choose == 1) {
+			audioFile = new File("music/ChillSong.wav");
+			try {
+				audioStream = AudioSystem.getAudioInputStream(audioFile);
+			} catch (UnsupportedAudioFileException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		System.out.println(choose + "");
+		startMusic();
 	}
 }

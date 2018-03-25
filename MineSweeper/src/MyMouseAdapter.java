@@ -3,18 +3,20 @@ import java.awt.Component;
 import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Random;
 
 import javax.swing.JFrame;
 
 public class MyMouseAdapter extends MouseAdapter {
+	
 
+	
 	private boolean isGameOver = false;
 	private boolean shouldWeEnd = false;
 	private int clickCounter = 0;
 	
 	public void mousePressed(MouseEvent e)
 	{
+		
 		//	switch (e.getButton()) {
 		if (e.getButton() == 1){		//Left mouse button
 			Component c = e.getComponent();
@@ -105,7 +107,6 @@ public class MyMouseAdapter extends MouseAdapter {
 						{
 							myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.BLACK;
 							myPanel.repaint();
-							Main.audioClip.stop();
 							this.shouldWeEnd = true;
 						}
 						else if (!myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].equals(Color.RED))
