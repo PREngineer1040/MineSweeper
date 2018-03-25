@@ -7,16 +7,14 @@ import java.awt.event.MouseEvent;
 import javax.swing.JFrame;
 
 public class MyMouseAdapter extends MouseAdapter {
-	
 
-	
 	private boolean isGameOver = false;
 	private boolean shouldWeEnd = false;
 	private int clickCounter = 0;
-	
+
 	public void mousePressed(MouseEvent e)
 	{
-		
+
 		//	switch (e.getButton()) {
 		if (e.getButton() == 1){		//Left mouse button
 			Component c = e.getComponent();
@@ -102,15 +100,18 @@ public class MyMouseAdapter extends MouseAdapter {
 						//Released the mouse button on a different cell where it was pressed
 						//Do nothing
 					} else {
-
+						// If the user has clicked on a bomb, the game will paint it black and end.
 						if (myPanel.bomb.bombLocator(myPanel.mouseDownGridX,myPanel.mouseDownGridY)==true && !myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].equals(Color.RED))
 						{
 							myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.BLACK;
 							myPanel.repaint();
 							this.shouldWeEnd = true;
 						}
+						//If the user is not clicking on a previously marked red box, we enter the nested if.
 						else if (!myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].equals(Color.RED))
 						{
+							// If the user has clicked on a tile that was light gray and not a bomb, we can give the number 
+							// adjacents and add to our clickCounter for possible box clicks.
 							if (!myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].equals(Color.WHITE)) {
 								myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.WHITE; 
 								myPanel.bomb.adjacentDisplay[myPanel.mouseDownGridX][myPanel.mouseDownGridY]=true;
@@ -159,12 +160,13 @@ public class MyMouseAdapter extends MouseAdapter {
 						//Do nothing
 					} else {
 
+						// If right clicking on a light gray box, it will turn it red.
 						if (myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].equals(Color.LIGHT_GRAY))
 						{
 							myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.RED;
 							myPanel.repaint();
 						}
-
+						// If right clicking on an already red box, it will turn it back to light gray.
 						else if (myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].equals(Color.RED)){
 							myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.LIGHT_GRAY;
 							myPanel.repaint();
@@ -176,6 +178,7 @@ public class MyMouseAdapter extends MouseAdapter {
 		}
 	}
 
+	// Check if the game has ended by either winning or by clicking on a mine.
 	public boolean istheGameOver() {
 		if (this.shouldWeEnd == true || this.clickCounter == 68)
 		{

@@ -20,13 +20,15 @@ public class Main {
 
 	public static void main(String[] args) throws InterruptedException, IOException {
 
-		
+
 		chooseMusic();
-		
-		
+		// Invokes method to allow user to pick their preferred song.
+
+
+		// While that will run the game as long as the game has not been concluded.
 		int tryAgain = 2;
 		while (tryAgain != 1) {
-			
+
 			JFrame myFrame = new JFrame("Bienve's Grid");
 			myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //This had to be changed, because otherwise the program would keep running after exiting the window. 
 			myFrame.setLocation(400, 150);
@@ -51,6 +53,7 @@ public class Main {
 	}
 
 
+	// Method that starts music
 	public static void startMusic() throws InterruptedException, IOException {
 		AudioFormat format = audioStream.getFormat();
 		DataLine.Info info = new DataLine.Info(Clip.class, format);
@@ -65,11 +68,13 @@ public class Main {
 		}
 
 	}
+
 	
+	// Method that allows user to pick their background music.
 	public static void chooseMusic() throws InterruptedException, IOException {
 		int choose = 0;
 		choose = JOptionPane.showConfirmDialog(null, "Would you like to experience hell?", "Choose your music", JOptionPane.YES_NO_OPTION);
-		
+
 		if (choose == 0) {
 			audioFile = new File("music/HellishSong.wav");
 			try {
@@ -77,9 +82,9 @@ public class Main {
 			} catch (UnsupportedAudioFileException e) {
 				e.printStackTrace();
 			}
-			
+
 		}
-		
+
 		else if (choose == 1) {
 			audioFile = new File("music/ChillSong.wav");
 			try {
@@ -88,7 +93,7 @@ public class Main {
 				e.printStackTrace();
 			}
 		}
-		
+
 		System.out.println(choose + "");
 		startMusic();
 	}

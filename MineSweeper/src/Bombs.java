@@ -12,7 +12,7 @@ public class Bombs
 
 	//This is the constructor for the Bombs object
 	public Bombs(int mines, int columns, int rows)
-		{
+	{
 		this.mines=mines; 
 		this.columns=columns;
 		this.rows=rows; 
@@ -22,37 +22,37 @@ public class Bombs
 		mineField();
 		revealAdjacent();
 		adjacentDisplayer();
-		}
-	
+	}
+
 	//This creates an array that will contain the location of the bombs, initially no space contains any bomb (all fields are false).
 	//This method also uses the random class to create the mine field. 
 
 	public void mineField()
-		{ 
-			int currentMines = 0; 
-			Random randomGenerator = new Random(); 
-			boolean[][] mineArray; 
-			mineArray = new boolean[rows][columns];
-			
-			while (currentMines<mines )
+	{ 
+		int currentMines = 0; 
+		Random randomGenerator = new Random(); 
+		boolean[][] mineArray; 
+		mineArray = new boolean[rows][columns];
+
+		while (currentMines<mines )
+		{
+			int i = randomGenerator.nextInt(rows);
+			int j = randomGenerator.nextInt(columns);
+			if(mineArray[i][j]==false)
 			{
-				int i = randomGenerator.nextInt(rows);
-				int j = randomGenerator.nextInt(columns);
-				if(mineArray[i][j]==false)
-				{
-					mineArray[i][j]=true; 
-					currentMines+=1; 
-				}
+				mineArray[i][j]=true; 
+				currentMines+=1; 
 			}
-			this.mineArray=mineArray;
 		}
-	
+		this.mineArray=mineArray;
+	}
+
 	//This method returns the value of the mineArray. It can be either true or false. 
 	public boolean bombLocator(int i, int j)
 	{
 		return mineArray[i][j]; 
 	}
-	
+
 	//This method finds the adjacent mines for every tile. It stores the adjacent mines location as a string Array. 
 	public void revealAdjacent()
 	{
@@ -84,19 +84,20 @@ public class Bombs
 		}
 		this.adjacentMineString = adjacent; 
 	}
-public void adjacentDisplayer()
-{
-	boolean[][] adjacentDisplay; 
-	adjacentDisplay = new boolean[columns][rows]; 
-	for (int i=0;i<columns;i++)
+	
+	public void adjacentDisplayer()
 	{
-		for (int j=0;j<rows;rows++)
+		boolean[][] adjacentDisplay; 
+		adjacentDisplay = new boolean[columns][rows]; 
+		for (int i=0;i<columns;i++)
 		{
-			adjacentDisplay[i][j]=false; 
+			for (int j=0;j<rows;rows++)
+			{
+				adjacentDisplay[i][j]=false; 
+			}
 		}
+		this.adjacentDisplay=adjacentDisplay; 
 	}
-	this.adjacentDisplay=adjacentDisplay; 
-}
 }
 
 
