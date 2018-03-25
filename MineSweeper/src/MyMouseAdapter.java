@@ -5,6 +5,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class MyMouseAdapter extends MouseAdapter {
 
@@ -100,9 +101,33 @@ public class MyMouseAdapter extends MouseAdapter {
 						//Released the mouse button on a different cell where it was pressed
 						//Do nothing
 					} else {
+
+						// If the user has just started and actually clicked on a bomb, it will prompt the user with a yes or no option
+						if (myPanel.bomb.bombLocator(myPanel.mouseDownGridX,myPanel.mouseDownGridY)==true 
+								&& !myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].equals(Color.RED)
+								&& clickCounter < 2
+								&& !myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].equals(Color.BLUE)) {
+
+							int choose = 0;
+							choose = JOptionPane.showConfirmDialog(null, "This is actually a bomb. You're too early into the game. Would you like to end the game?", "Second Wind", JOptionPane.YES_NO_OPTION);
+							if (choose == 0) {
+								myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.BLACK;
+								myPanel.repaint();
+								this.shouldWeEnd = true;
+							}
+
+							else if (choose == 1) {
+								myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.RED;
+								myPanel.repaint();
+							}
+						}
+
+
+
 						// If the user has clicked on a bomb, the game will paint it black and end.
-						if (myPanel.bomb.bombLocator(myPanel.mouseDownGridX,myPanel.mouseDownGridY)==true && !myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].equals(Color.RED))
-						{
+						else if (myPanel.bomb.bombLocator(myPanel.mouseDownGridX,myPanel.mouseDownGridY)==true 
+								&& !myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].equals(Color.RED)
+								&& !myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].equals(Color.BLUE)) {
 							myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.BLACK;
 							myPanel.repaint();
 							this.shouldWeEnd = true;
@@ -118,7 +143,7 @@ public class MyMouseAdapter extends MouseAdapter {
 								this.clickCounter++;
 								//myPanel.repaint(); 
 							}
-						}	
+						}
 					}
 				}
 			} 
