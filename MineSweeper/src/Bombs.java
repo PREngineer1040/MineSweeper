@@ -50,7 +50,7 @@ public class Bombs
 	//This method returns the value of the mineArray. It can be either true or false. 
 	public boolean bombLocator(int i, int j)
 	{
-		return mineArray[i][j]; 
+			return mineArray[i][j]; 
 	}
 
 	//This method finds the adjacent mines for every tile. It stores the adjacent mines location as a string Array. 

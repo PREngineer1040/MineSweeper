@@ -29,10 +29,10 @@ public class Main {
 		int tryAgain = 2;
 		while (tryAgain != 1) {
 
-			JFrame myFrame = new JFrame("Bienve's Grid");
+			JFrame myFrame = new JFrame("MineSweeper");
 			myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //This had to be changed, because otherwise the program would keep running after exiting the window. 
 			myFrame.setLocation(400, 150);
-			myFrame.setSize(700,730);
+			myFrame.setSize(800,830);
 
 			MyPanel myPanel = new MyPanel();
 			myFrame.add(myPanel);

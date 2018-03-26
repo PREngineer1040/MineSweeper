@@ -93,6 +93,8 @@ public class MyPanel extends JPanel {
 				g.fillRect(x1 + GRID_X + (x * (INNER_CELL_SIZE + 1)) + 1, y1 + GRID_Y + (y * (INNER_CELL_SIZE + 1)) + 1, INNER_CELL_SIZE, INNER_CELL_SIZE);
 			}	
 		}
+		
+		//Here we draw the adjacent number of bombs of a cell in the cell. 
 		for (int i=0;i<TOTAL_COLUMNS; i++)
 		{
 			for (int j=0;j<TOTAL_ROWS;j++)
@@ -124,15 +126,17 @@ public class MyPanel extends JPanel {
 		if ((x % (INNER_CELL_SIZE + 1) == 0) || (y % (INNER_CELL_SIZE + 1) == 0)) {   //Coordinate is at an edge; not inside a cell
 			return -1;
 		}
-		x = x / (INNER_CELL_SIZE + 1);
-		y = y / (INNER_CELL_SIZE + 1);
+		x = x / (INNER_CELL_SIZE +1);
+		y = y / (INNER_CELL_SIZE +1);
 		/*if (x == 0 && y == TOTAL_ROWS ) {    //The lower left extra cell
 			return x;
 
+//Here i Had to substract 1 from total rows and total columns to prevent an out of bounds bug that we would get otherwise 
 		}*/
-		if (x < 0 || x > TOTAL_COLUMNS  || y < 0 || y > TOTAL_ROWS ) {   //Outside the rest of the grid
+		if (x < 0 || x > TOTAL_COLUMNS-1|| y < 0 || y > TOTAL_ROWS-1 ) {   //Outside the rest of the grid
 			return -1;
 		}
+
 		return x;
 	} 
 	public int getGridY(int x, int y) {
@@ -150,13 +154,14 @@ public class MyPanel extends JPanel {
 		if ((x % (INNER_CELL_SIZE + 1) == 0) || (y % (INNER_CELL_SIZE + 1) == 0)) {   //Coordinate is at an edge; not inside a cell
 			return -1;
 		}
-		x = x / (INNER_CELL_SIZE + 1);
-		y = y / (INNER_CELL_SIZE + 1);
+		x = x / (INNER_CELL_SIZE +1);
+		y = y / (INNER_CELL_SIZE +1);
 		/*if (x == 0 && y == TOTAL_ROWS - 1) {    //The lower left extra cell
 			return y;
 		}
 		 */
-		if (x < 0 || x > TOTAL_COLUMNS || y < 0 || y > TOTAL_ROWS ) {   //Outside the rest of the grid
+		//Here i Had to substract 1 from total rows and total columns to prevent an out of bounds bug that we would get otherwise 
+		if (x < 0 || x > TOTAL_COLUMNS-1 || y < 0 || y > TOTAL_ROWS-1 ) {   //Outside the rest of the grid
 			return -1;
 		}
 		return y;
