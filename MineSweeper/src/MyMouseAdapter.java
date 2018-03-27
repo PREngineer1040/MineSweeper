@@ -155,30 +155,10 @@ public class MyMouseAdapter extends MouseAdapter {
 						{
 							// If the user has clicked on a tile that was light gray and not a bomb, we can give the number 
 							// adjacents and add to our clickCounter for possible box clicks.
-							if (myPanel.bomb.adjacentInt[myPanel.mouseDownGridX][myPanel.mouseDownGridY]==0)
-							{	
-								int counter; 
-								for (int m=-1;m<=1;m++)
-								{
-									for (int n=-1;n<=1;n++)
-									{
-										if ((m+myPanel.mouseDownGridX)>=0 && (n+myPanel.mouseDownGridY)>=0 && (m+myPanel.mouseDownGridX)<myPanel.TOTAL_COLUMNS && (n+myPanel.mouseDownGridY)<myPanel.TOTAL_ROWS)
-										{
-											if (n!=0 || m!=0)
-											{
-												myPanel.bomb.adjacentDisplay[m+myPanel.mouseDownGridX][n+myPanel.mouseDownGridY]=true;
-												myPanel.colorArray[myPanel.mouseDownGridX+m][myPanel.mouseDownGridY+n]=(Color.WHITE);
-												myPanel.repaint(); 
-											}
-										}
-									}
-								}
-							}
 							if (!myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].equals(Color.WHITE)) {
 								myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.WHITE; 
 								myPanel.bomb.adjacentDisplay[myPanel.mouseDownGridX][myPanel.mouseDownGridY]=true;
 								this.clickCounter++; 
-
 								myPanel.repaint(); 
 							}
 						}
@@ -251,4 +231,3 @@ public class MyMouseAdapter extends MouseAdapter {
 		return isGameOver;
 	}
 }
-
