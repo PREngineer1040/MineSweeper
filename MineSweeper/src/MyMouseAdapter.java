@@ -12,7 +12,7 @@ public class MyMouseAdapter extends MouseAdapter {
 	private boolean isGameOver = false;
 	private boolean shouldWeEnd = false;
 	private int clickCounter = 0;
-
+	public static boolean firstClick=false; 
 	public void mousePressed(MouseEvent e)
 	{
 
@@ -103,10 +103,15 @@ public class MyMouseAdapter extends MouseAdapter {
 					} else {
 
 						// If the user has just started and actually clicked on a bomb, it will prompt the user with a yes or no option
-						if (myPanel.bomb.bombLocator(myPanel.mouseDownGridX,myPanel.mouseDownGridY)==true 
+						/*if (myPanel.bomb.bombLocator(myPanel.mouseDownGridX,myPanel.mouseDownGridY)==true 
 								&& !myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].equals(Color.RED)
-								&& clickCounter < 2
-								&& !myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].equals(Color.BLUE)) {
+								&& firstClick ==false
+								&& !myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].equals(Color.BLUE))
+						{
+						*/
+						
+							/*
+						{
 
 							int choose = 0;
 							choose = JOptionPane.showConfirmDialog(null, "This is actually a bomb. You're too early into the game. Would you like to end the game?", "Second Wind", JOptionPane.YES_NO_OPTION);
@@ -121,14 +126,27 @@ public class MyMouseAdapter extends MouseAdapter {
 								myPanel.repaint();
 							}
 						}
-
-
-
+						*/
+						if (firstClick==false)
+						{
+								myPanel.bomb.mineField(myPanel.mouseDownGridX,myPanel.mouseDownGridY);
+								firstClick=true;
+								myPanel.repaint(); 
+						}
 						// If the user has clicked on a bomb, the game will paint it black and end.
-						else if (myPanel.bomb.bombLocator(myPanel.mouseDownGridX,myPanel.mouseDownGridY)==true 
+						if (myPanel.bomb.bombLocator(myPanel.mouseDownGridX,myPanel.mouseDownGridY)==true 
 								&& !myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].equals(Color.RED)
 								&& !myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].equals(Color.BLUE)) {
-							myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.BLACK;
+							for (int i=0;i<myPanel.TOTAL_COLUMNS;i++)
+							{
+								for (int j=0;j< myPanel.TOTAL_ROWS ; j ++)
+								{
+									if (myPanel.bomb.bombLocator(i,j)==true)
+									{
+										myPanel.colorArray[i][j] = Color.BLACK;
+									}
+								}
+							}
 							myPanel.repaint();
 							this.shouldWeEnd = true;
 						}
@@ -140,8 +158,8 @@ public class MyMouseAdapter extends MouseAdapter {
 							if (!myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].equals(Color.WHITE)) {
 								myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.WHITE; 
 								myPanel.bomb.adjacentDisplay[myPanel.mouseDownGridX][myPanel.mouseDownGridY]=true;
-								this.clickCounter++;
-								//myPanel.repaint(); 
+								this.clickCounter++; 
+								myPanel.repaint(); 
 							}
 						}
 					}
@@ -208,6 +226,7 @@ public class MyMouseAdapter extends MouseAdapter {
 		if (this.shouldWeEnd == true || this.clickCounter == 68)
 		{
 			this.isGameOver = true;
+			this.firstClick=false; 
 		}
 		return isGameOver;
 	}

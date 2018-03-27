@@ -17,34 +17,37 @@ public class Bombs
 		this.columns=columns;
 		this.rows=rows; 
 		boolean [][] mineArray;
-		mineArray= new boolean[rows][columns]; 
+		mineArray= new boolean[columns][rows]; 
 		this.mineArray= mineArray;
-		mineField();
-		revealAdjacent();
-		adjacentDisplayer();
+
 	}
 
 	//This creates an array that will contain the location of the bombs, initially no space contains any bomb (all fields are false).
 	//This method also uses the random class to create the mine field. 
 
-	public void mineField()
+	public void mineField(int x, int y)
 	{ 
 		int currentMines = 0; 
 		Random randomGenerator = new Random(); 
 		boolean[][] mineArray; 
-		mineArray = new boolean[rows][columns];
+		mineArray = new boolean[this.columns][this.rows];
 
 		while (currentMines<mines )
 		{
-			int i = randomGenerator.nextInt(rows);
-			int j = randomGenerator.nextInt(columns);
-			if(mineArray[i][j]==false)
+			int i = randomGenerator.nextInt(columns);
+			int j = randomGenerator.nextInt(rows);
+			if (i!=x || j!=y)
 			{
-				mineArray[i][j]=true; 
-				currentMines+=1; 
+				if(mineArray[i][j]==false)
+				{
+					mineArray[i][j]=true; 
+					currentMines+=1; 
+				}
 			}
 		}
 		this.mineArray=mineArray;
+		revealAdjacent(); 
+		adjacentDisplayer(); 
 	}
 
 	//This method returns the value of the mineArray. It can be either true or false. 
@@ -91,7 +94,7 @@ public class Bombs
 		adjacentDisplay = new boolean[columns][rows]; 
 		for (int i=0;i<columns;i++)
 		{
-			for (int j=0;j<rows;rows++)
+			for (int j=0;j<rows;j++)
 			{
 				adjacentDisplay[i][j]=false; 
 			}

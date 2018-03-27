@@ -14,8 +14,8 @@ public class MyPanel extends JPanel {
 	private static final int GRID_X = 25;
 	private static final int GRID_Y = 25;
 	private static final int INNER_CELL_SIZE = 70;
-	private static final int TOTAL_COLUMNS =9;
-	private static final int TOTAL_ROWS = 9;   //Last row has only one cell
+	public static final int TOTAL_COLUMNS =7;
+	public static final int TOTAL_ROWS = 9;   //Last row has only one cell
 	public static final int mines=13; 
 	public int x = -1;
 	public int y = -1;
@@ -26,7 +26,7 @@ public class MyPanel extends JPanel {
 	//Here we create an object of the Bombs class and create the mine Field. 
 	//The mine field is then stored as an instance of the Bombs class. 
 	//private Random generator = new Random();
-	Bombs bomb=new Bombs(mines,TOTAL_ROWS,TOTAL_COLUMNS);
+	Bombs bomb=new Bombs(mines,TOTAL_COLUMNS,TOTAL_ROWS);
 	
 	
 
@@ -82,31 +82,26 @@ public class MyPanel extends JPanel {
 			g.drawLine(x1 + GRID_X + (x * (INNER_CELL_SIZE + 1)), y1 + GRID_Y, x1 + GRID_X + (x * (INNER_CELL_SIZE + 1)), y1 + GRID_Y + ((INNER_CELL_SIZE + 1) * (TOTAL_ROWS)));
 		}
 
-		//Draw an additional cell at the bottom left
-		//g.drawRect(x1 + GRID_X, y1 + GRID_Y + ((INNER_CELL_SIZE + 1) * (TOTAL_ROWS )), INNER_CELL_SIZE + 1, INNER_CELL_SIZE + 1);
 
 		//Paint cell colors
+		//Here we draw the adjacent number of bombs of a cell in the cell. 
 		for (int x = 0; x < TOTAL_COLUMNS; x++) {
 			for (int y = 0; y < TOTAL_ROWS; y++) {
 				Color c = colorArray[x][y];
 				g.setColor(c);
 				g.fillRect(x1 + GRID_X + (x * (INNER_CELL_SIZE + 1)) + 1, y1 + GRID_Y + (y * (INNER_CELL_SIZE + 1)) + 1, INNER_CELL_SIZE, INNER_CELL_SIZE);
+				if (MyMouseAdapter.firstClick==true)
+				{
+					if (bomb.adjacentDisplay[x][y]==true)
+					{
+					g.setColor(Color.BLUE);
+					g.setFont(newFont);
+					g.drawString(bomb.adjacentMineString[x][y], INNER_CELL_SIZE*(x+1)-15, (y+1)*INNER_CELL_SIZE);
+					}
+				}
 			}	
 		}
 		
-		//Here we draw the adjacent number of bombs of a cell in the cell. 
-		for (int i=0;i<TOTAL_COLUMNS; i++)
-		{
-			for (int j=0;j<TOTAL_ROWS;j++)
-			{
-				if (bomb.adjacentDisplay[i][j]==true)
-				{
-					g.setColor(Color.BLUE);
-					g.setFont(newFont);
-					g.drawString(bomb.adjacentMineString[i][j], INNER_CELL_SIZE*(i+1)-15, (j+1)*INNER_CELL_SIZE);
-				}
-			}
-		}
 
 
 	}
